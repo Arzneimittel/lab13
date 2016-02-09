@@ -9,6 +9,7 @@
 using namespace std;
 //-------------------------------
 void writeData(const fftw_complex* const f, const int N, const double L,const char* const fname);
+void reading(double* const inR, double& temp, const int N, const char* filename);
 
 //-------------------------------
 
@@ -33,7 +34,14 @@ int main(int argc, char** argv){
 	fftw_plan FW  = fftw_plan_dft_r2c_1d(N, inR, f, FFTW_ESTIMATE);
 
 	// Read input data
+// const string filename = "i.txt";
+// double* p = new double [N];
 
+reading (inR,L,N,in_file);
+// for(i=0;i<N;i++)
+// {
+  
+// }
 	// Call function which reads the data from
 	// the input file into the array inR
 
@@ -65,3 +73,14 @@ void writeData(const fftw_complex* const f, const int N, const double L,const ch
 	out.close();
 }
 //-------------------------------
+void reading(double* const inR, double& temp, const int N, const char* filename)
+{
+ ifstream in(filename);
+for (int i=0; i<N; i++)
+{
+  in>>temp;
+  in>>inR[i];
+  
+}
+in.close();
+}
